@@ -1,5 +1,5 @@
 from contrib.schemas import BaseSchema
-from typing import Annotated
+from typing import Annotated, UUID4
 from pydantic import Field
 
 
@@ -26,5 +26,24 @@ class CentroTreinamento(BaseSchema):
             description="Proprietário do centro de treinamento",
             example="Jorge",
             max_length=30,
+        ),
+    ]
+
+
+class CentroTreinamentoIn(CentroTreinamento):
+    pass
+
+
+class CentroTreinamentoOut(CentroTreinamentoIn):
+    id: Annotated[UUID4, Field(description="Identificador do centro de treinamento")]
+
+
+class CentroTreinamentoAtleta(BaseSchema):
+    nome: Annotated[
+        str,
+        Field(
+            description="Nome do centro de treinamento",
+            example="PT Train",
+            max_length=20,
         ),
     ]
